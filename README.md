@@ -25,10 +25,10 @@ The bot has two primary functions, both related to linking Discord text channels
 When you create a Hubs room using the `!hubs create` bot command, you establish a permanent association between the Hubs room and the Discord channel where you typed the command. This association will cause the Hubs room to use information from your Discord server to authenticate participants. Specifically:
 
 - People can only join the Hubs room via Discord OAuth, and only if they are a member of the channel that the Hubs room is associated with.
-- When they join, their permissions are based on their Discord permissions 
+- When they join, their permissions are based on their Discord permissions
   - To enter the room they must have "View Channel" permission
   - To be a moderator they must have "Kick Members" permission (and "View Channel").
-     - Moderators can kick and mute members in the hubs room. 
+     - Moderators can kick and mute members in the hubs room.
      - Moderators can also create and manipulate objects, draw and share video even if these are turned off in the room settings.
      - Note: only discord users with verified emails can become moderators
   - To be a room owner they must have "Manage Channels" (and "Kick Members and "View Channel")
@@ -92,24 +92,27 @@ To simply run the bot process:
 
 1. Clone this repository.
 
-2. Install Node and `npm`. The instructions [at the NPM website][npm] should suffice.
+2. This project uses `yarn` as the package manager. To use `yarn` you need to have Node and `npm` already installed . The instructions [at the NPM website][npm] should suffice.
 
-3. Install Javascript dependencies by running `npm ci`.
+3. Then install [yarn] by running `npm install -g yarn`.
 
-4. [Create a Discord bot on the Discord website.][discord-docs]
+4. Install Javascript dependencies by running `yarn install`.
 
-5. Add redirect URI in the OAuth page and select the bot permissions
+5. [Create a Discord bot on the Discord website.][discord-docs]
+
+6. Add redirect URI in the OAuth page and select the bot permissions
    - Redirect URI: `https://hubs.local:4000/api/v1/oauth/discord`
 
-6. Create an `.env` file with your bot's API token. Include `RETICULUM_HOST={your server}` and `HUBS_HOSTS={your server}` to point it at your local backend. `RETICULUM_HOST={your server}` should point to 'hubs.local:4000'. You can see the different configuration bits you can override in [`.env.defaults`](./.env.defaults). You can also pass these values as environment variables when you run `npm start`/`npm run local`.
+7. Create an `.env` file with your bot's API token. Include `RETICULUM_HOST={your server}` and `HUBS_HOSTS={your server}` to point it at your local backend. `RETICULUM_HOST={your server}` should point to 'hubs.local:4000'. You can see the different configuration bits you can override in [`.env.defaults`](./.env.defaults). You can also pass these values as environment variables when you run `yarn start`/`yarn run local`.
 
-7. Inside your local reticulum instance in reticulum/config/dev.exs change the configuration for `Ret.DiscordClient` to point to your bot's: `client_id`, `client_secret`, and `bot_token` found inside your discord bot.
+8. Inside your local reticulum instance in reticulum/config/dev.exs change the configuration for `Ret.DiscordClient` to point to your bot's: `client_id`, `client_secret`, and `bot_token` found inside your discord bot.
 
-8. Run `npm run local` to start the server, connect to Discord and Reticulum, and operate indefinitely.
+9. Run `yarn run local` to start the server, connect to Discord and Reticulum, and operate indefinitely.
 
-9. [Follow the instructions above](#usage) to set up and use the bot on your Discord guild.
+10. [Follow the instructions above](#usage) to set up and use the bot on your Discord guild.
 
 [npm]: https://nodejs.org/en/
+[yarn]: https://yarnpkg.com/
 [discord-docs]: https://discordapp.com/developers/docs/intro
 [invite-page]: https://your-server.com/discord
 [hubs-discord]: https://discord.gg/wHmY4nd
